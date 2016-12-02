@@ -1,12 +1,8 @@
-FROM node:argon
+FROM nginx:1.11.5
 
-# Create app directory
-RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app
+COPY static /usr/share/nginx/html
 
-# Bundle app source
-COPY server.js /usr/src/app
+EXPOSE 80 443
 
-EXPOSE 8080
-CMD [ "node", "server.js" ]
 
+CMD ["nginx", "-g", "daemon off;"]
